@@ -6,6 +6,7 @@ class Bitton extends Component {
         <div>
             <button class="LeftButton" onClick = {prev}>
             </button>
+            
             <button class="RightButton" onClick = {prev}>
             </button>
         </div>
