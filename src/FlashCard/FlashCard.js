@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './FlashCard.css';
+import FormInput from '../FormInput/FormInput';
 import Button from '../Button/Button';
 class FlashCard extends Component {
     state = {
@@ -22,12 +23,22 @@ class FlashCard extends Component {
             }
         ],
         flipped:false,
-        incrementer:0
+        incrementer:0,
+        add:false,
+        front:'Add your question here',
+        end:'Add your answer here'
     }
     flipHandler =()=>{
         let toggle = !this.state.flipped;
         
         this.setState({flipped:toggle});
+    }
+    addHandler = (event) =>{
+        let arr = {'front':event.target.value, 'back':event.target.value}
+        let copy = [...this.state.card]  
+        copy.push(arr)
+        this.setState({card:copy})
+        console.log(this.state.card)
     }
     nextHandler = () =>{
         if(this.state.incrementer < this.state.card.length - 1){
@@ -35,6 +46,9 @@ class FlashCard extends Component {
             this.setState({incrementer: value})
         }else{
             this.setState({incrementer: 0})
+        }
+        if(this.state.flipped == true){
+            this.setState({flipped:false})
         }
         
        
@@ -47,6 +61,18 @@ class FlashCard extends Component {
         else{
             this.setState({incrementer: this.state.card.length-1})
         }
+        if(this.state.flipped == true){
+            this.setState({flipped:false})
+        }
+    }
+    onChangeHandler(event){
+        // this.setState({[event.target.name] : event.target.value})
+
+        // let arr = {[event.target.name] : event.target.value}
+        let arr = {'front':'cheese', 'back':'cake'}
+        let copy = [...this.state.card]  
+        copy.push(arr)
+        this.setState({card:copy})
     }
     render() {
         let display = null;
@@ -65,7 +91,17 @@ class FlashCard extends Component {
             )
         return (
             <div>
-                <Button Next={this.nextHandler} Prev={this.prevHandler}/>
+
+                <Button Next={this.nextHandler} Prev={this.prevHandler}
+                Add={this.addHandler}/>
+                <input name='back' input={this.state.addQuestion} 
+                // onChange={this.onChangeHandler}
+                />
+                <input name='front' input={this.state.addAnswer} 
+                // 
+                />
+
+                
                 <article class="flashcard" onClick={this.flipHandler}>
                     <label for="flashcard-1">
                         {display}

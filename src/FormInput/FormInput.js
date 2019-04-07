@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Form from '../Forms/Form';
 import './FormInput.css';
 import Modal from '../Modal/Modal';
+import FlashCard from '../FlashCard/FlashCard';
 import axios from '../axios-orders';
 
 
@@ -64,7 +65,7 @@ inputChangedHandler = (event, inputIdentifier) => {
     this.setState({orderForm: updatedOrderForm});
 }
 
-    submitCanceler = () =>{
+    submitCanceler = () => {
         this.setState({submited:false})
         //this.props.history.push( '/' );
 
@@ -87,6 +88,7 @@ render () {
             elementType={formElement.config.elementType}
             elementConfig={formElement.config.elementConfig}
             value={formElement.config.value}
+            
             changed={(event) => this.inputChangedHandler(event, formElement.id)} />
         ))
         }
