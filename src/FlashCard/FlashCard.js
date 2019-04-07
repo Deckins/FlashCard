@@ -34,7 +34,7 @@ class FlashCard extends Component {
         this.setState({flipped:toggle});
     }
     addHandler = (event) =>{
-        let newdata = {'front':event.target.value, 'back':event.target.value}  
+        let newdata = {'front':this.state.front, 'back': this.state.back}  
         this.state.card.push(newdata)
         console.log(this.state.card)
     }
@@ -50,6 +50,12 @@ class FlashCard extends Component {
         }
         
        
+    }
+    addQuestionHandler = (event) =>{
+        this.setState({front:event.target.value})
+    }
+    addAnswerHandler =(event) =>{
+        this.setState({back:event.target.value})
     }
     prevHandler = () =>{
         if(this.state.incrementer !== 0){
@@ -85,9 +91,11 @@ class FlashCard extends Component {
                 <Button Next={this.nextHandler} Prev={this.prevHandler}
                 Add={this.addHandler}/>
                 <form onSubmit = {this.addHandler}>
-                    <input name='back' input={this.state.addQuestion} 
+                    <input name='back' input={this.state.addQuestion}
+                    onChange={this.addQuestionHandler} 
                     />
-                    <input name='front' input={this.state.addAnswer} 
+                    <input name='front' input={this.state.addAnswer}
+                    onChange={this.addAnswerHandler} 
                     />
                 </form>
                   
