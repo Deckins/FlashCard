@@ -34,10 +34,8 @@ class FlashCard extends Component {
         this.setState({flipped:toggle});
     }
     addHandler = (event) =>{
-        let arr = {'front':event.target.value, 'back':event.target.value}
-        let copy = [...this.state.card]  
-        copy.push(arr)
-        this.setState({card:copy})
+        let newdata = {'front':event.target.value, 'back':event.target.value}  
+        this.state.card.push(newdata)
         console.log(this.state.card)
     }
     nextHandler = () =>{
@@ -65,15 +63,7 @@ class FlashCard extends Component {
             this.setState({flipped:false})
         }
     }
-    onChangeHandler(event){
-        // this.setState({[event.target.name] : event.target.value})
 
-        // let arr = {[event.target.name] : event.target.value}
-        let arr = {'front':'cheese', 'back':'cake'}
-        let copy = [...this.state.card]  
-        copy.push(arr)
-        this.setState({card:copy})
-    }
     render() {
         let display = null;
         if(this.state.flipped === true){
@@ -94,13 +84,13 @@ class FlashCard extends Component {
 
                 <Button Next={this.nextHandler} Prev={this.prevHandler}
                 Add={this.addHandler}/>
-                <input name='back' input={this.state.addQuestion} 
-                // onChange={this.onChangeHandler}
-                />
-                <input name='front' input={this.state.addAnswer} 
-                // 
-                />
-
+                <form onSubmit = {this.addHandler}>
+                    <input name='back' input={this.state.addQuestion} 
+                    />
+                    <input name='front' input={this.state.addAnswer} 
+                    />
+                </form>
+                  
                 
                 <article class="flashcard" onClick={this.flipHandler}>
                     <label for="flashcard-1">
