@@ -33,7 +33,7 @@ article.flashcard {
   }
   .back {
     color: #DDD;
-    background: #C85073;
+    background: rgb(80, 152, 200);
     height: 100%;
   }
   .something{
