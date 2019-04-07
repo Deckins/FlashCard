@@ -35,12 +35,6 @@ class FlashCard extends Component {
                         {display}
                     </label>
                 </article>
-                
-                <button class="LeftButton" onClick = {this.prev}>
-                </button>
-
-                <button class="RightButton" onClick = {this.next}>
-                </button>
             </div>
         );
     }
