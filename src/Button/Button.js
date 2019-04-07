@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './Add.css';
 import './Next.css';
 import './Prev.css';
@@ -6,36 +6,36 @@ import './Delete.css';
 import './Restart.css';
 import './Test.css';
 
-class Button extends Component {
-    render() {
+const Button = (props) => {
+    
         return(
         <div>
             <div>
-                <button class="Prev" onClick={this.Prev}>Prev</button>
+                <button class="Prev" onClick={props.Prev}>Prev</button>
             </div>
 
             <div>
-                <button class="Next" onClick={this.Next}>Next</button>
+                <button class="Next" onClick={props.Next}>Next</button>
             </div>
 
             <div>
-                <button class="Test" onClick={this.Test}>Test</button>
+                <button class="Test" onClick={props.Test}>Test</button>
             </div>
 
              <div>
-                <button class="Add" onClick={this.Add}>Add</button>
+                <button class="Add" onClick={props.Add}>Add</button>
             </div>
 
             <div>
-                <button class="Restart" onClick={this.Restart}>Restart</button>
+                <button class="Restart" onClick={props.Restart}>Restart</button>
             </div>
 
             <div>
-                <button class="Delete" onClick={this.Delete}>Delete</button>
+                <button class="Delete" onClick={props.Delete}>Delete</button>
             </div>
             
         </div>
         );
     }
-}
+
 export default Button;
