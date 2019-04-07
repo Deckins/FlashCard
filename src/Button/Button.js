@@ -14,31 +14,29 @@ class Button extends Component {
 
 
             <div>
-                <button class="Prev">Prev </button>
+                <button class="Prev" onClick={this.Prev}>Prev</button>
             </div>
 
             <div>
-                <button class="Next">Next</button>
+                <button class="Next" onClick={this.Next}>Next</button>
             </div>
 
             <div>
-                <button class="Add">Add</button>
+                <button class="Add" onClick={this.Add}>Add</button>
             </div>
 
             <div>
-                <button class="Test">Test</button>
+                <button class="Test" onClick={this.Test}>Test</button>
             </div>
 
             <div>
-                <button class="Restart">Restart</button>
+                <button class="Restart" onClick={this.Restart}>Restart</button>
             </div>
 
             <div>
-                <button class="Delete">Delete</button>
+                <button class="Delete" onClick={this.Delete}>Delete</button>
             </div>
             
-
-    
         </div>
         );
     }
