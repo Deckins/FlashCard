@@ -1,5 +1,5 @@
 .Restart{
-  background-color: #4CAF50;
+  background-color: red;
   border: none;
   color: white;
   padding: 15px 32px;
@@ -10,6 +10,6 @@
   margin: auto auto;
   cursor: pointer;
   position: absolute;
-  left: 72.7%;
+  left: 80.8%;
   transform: translateX(-50%);
 }

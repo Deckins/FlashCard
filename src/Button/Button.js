@@ -27,13 +27,13 @@ const Button = (props) => {
             </div>
 
             <div>
-                <button class="Restart" onClick={props.Restart}>Restart</button>
+                <button class="Restart" onClick={props.Restart}>Delete</button>
             </div>
 
-            <div>
+            {/* <div>
                 <button class="Delete" onClick={props.Delete}>Delete</button>
             </div>
-            
+             */}
         </div>
         );
     }
