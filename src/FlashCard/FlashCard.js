@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './FlashCard.css';
 import FormInput from '../FormInput/FormInput';
 import Button from '../Button/Button';
+import './Form.css';
 class FlashCard extends Component {
     state = {
         card : [
@@ -100,7 +101,9 @@ class FlashCard extends Component {
             <div>
 
                 <Button Next={this.nextHandler} Prev={this.prevHandler}
-                Add={this.addHandler} Restart={this.restartHandler}/>
+                Add={this.addHandler} Restart={this.restartHandler}/> 
+                  
+                <div class = 'something'>
                 <form onSubmit = {this.addHandler}>
                     <input name='back' input={this.state.addQuestion}
                     onChange={this.addQuestionHandler} 
@@ -109,8 +112,8 @@ class FlashCard extends Component {
                     onChange={this.addAnswerHandler} 
                     />
                 </form>
-                  
-                
+                </div>
+
                 <article class="flashcard" onClick={this.flipHandler}>
                     <label for="flashcard-1">
                         {display}
