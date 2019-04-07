@@ -30,7 +30,7 @@ class FlashCard extends Component {
         add:false,
         front:'',
         end:'',
-        popup:true
+        popup:false
     }
     flipHandler =()=>{
         if(this.state.card.length > 0){
@@ -129,11 +129,13 @@ class FlashCard extends Component {
                 addNew = (
                     <div class = 'something'>
                     <form onSubmit = {this.addHandler}>
+                        <p>Please Enter An Questiongit </p>
                         <input name='back' style={{width:'200px',height:'100px'}} input={this.state.addQuestion}
-                        onChange={this.addQuestionHandler} 
+                        onChange={this.addQuestionHandler}
                         />
+                        <p>Please Provide An Answer</p>
                         <input name='front' style={{width:'200px',height:'100px'}}input={this.state.addAnswer}
-                        onChange={this.addAnswerHandler} 
+                        onChange={this.addAnswerHandler}
                         />
                     </form>
                     </div>
