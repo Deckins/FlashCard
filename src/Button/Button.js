@@ -23,7 +23,9 @@ const Button = (props) => {
             </div>
 
             <div>
-                <button class="Restart" onClick={props.Restart}>Delete</button>
+                <a href="/">
+                    <button class="Restart" onClick={props.Restart}>Delete</button>
+                </a>
             </div>
 
         </div>

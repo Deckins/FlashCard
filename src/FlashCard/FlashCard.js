@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './FlashCard.css';
 import FormInput from '../FormInput/FormInput';
 import Button from '../Button/Button';
+// import {withRouter} from 'react-router-dom'
 import './Form.css';
 class FlashCard extends Component {
     state = {
@@ -42,14 +43,22 @@ class FlashCard extends Component {
     }
     addHandler = () => {
         // if (this.state.front !== '' && this.state.end !== ''){
-            let newdata = {'front':this.state.front, 'back': this.state.back}  
-            this.state.card.push(newdata)
-            console.log(this.state.card)
-            console.log('pass')
+
+            let newdata = {'front':this.state.front, 'back': this.state.back}
+            let found = this.state.card.find(c => {
+                return c.front === newdata.front &&
+                    c.back === newdata.back
+            })
+            if (!found && newdata.front && newdata.front !== '' &&
+                newdata.back && newdata.back !== '') {
+                this.state.card.push(newdata)
+                console.log(this.state.card)
+                console.log('pass')
+            }
             let toggle = !this.state.popup
+            this.setState({popup:toggle})
         // }
         
-            this.setState({popup:toggle})
     }
     nextHandler = () =>{
         if(this.state.incrementer < this.state.card.length - 1 ){
@@ -68,10 +77,11 @@ class FlashCard extends Component {
     restartHandler = () =>{
         // let arr = [{front:'',back:''}]
         // this.setState({card:arr})
-        for(let i = 0; i< this.state.card.length +1; i++)
-            this.state.card.pop()
+        // for(let i = 0; i< this.state.card.length +1; i++)
+        //     this.state.card.pop()
 
-            console.log(this.state.card)
+        //     console.log(this.state.card)
+        // this.props.history.push('/')
     }
 
     addQuestionHandler = (event) =>{
@@ -85,7 +95,7 @@ class FlashCard extends Component {
             let value = this.state.incrementer - 1
             this.setState({incrementer: value})
         }
-        else{
+        else if(this.state.card.length == 0){
             return;
             // this.setState({incrementer: this.state.card.length-1})
         }
@@ -96,18 +106,23 @@ class FlashCard extends Component {
 
     render() {
         let display = null;
+        console.log(this.state.card,this.state.incrementer)
         if(this.state.flipped === true){
            display = (
             <section className='back'>
-                {this.state.card[this.state.incrementer].back}
+                {
+                    this.state.card[this.state.incrementer].back
+                }
             </section>
           )  
         }
         else
             display = (
                 <section className='front'>
-                         {this.state.card[this.state.incrementer].front}
-                    </section>
+                    {
+                        this.state.card[this.state.incrementer].front
+                    }
+                </section>
             )
             let addNew = null
             if(this.state.popup){
