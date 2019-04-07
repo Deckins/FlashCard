@@ -9,10 +9,8 @@ class App extends Component {
     return (
       <div>
         <Banner/>
-        <div class="container">
-          <Button/>
-          <FlashCard/>
-        </div>
+        <Button/>
+        <FlashCard/>
       </div>
     );
   }
