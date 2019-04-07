@@ -6,38 +6,50 @@ import './Form.css';
 class FlashCard extends Component {
     state = {
         card : [
-            {
-                front:'Front of the flashcard',
-                back:'Back of the flashcard'
-            },
+
             {
                 front:'Who is the first president',
-                back:'George Washington'
+                back:'George Washington' 
             },
             {
                 front:'What is the capital of China',
                 back:'Beijing'
             },
             {
-                front:'What color is the sky',
-                back:'Blue'
+                front:'What does K stand for in the Periodic Table',
+                back:'Potassium'
             }
+            // {
+            //     front:'What color is the sky',
+            //     back:'Blue'
+            // }
         ],
         flipped:false,
         incrementer:0,
         add:false,
-        front:'Add your question here',
-        end:'Add your answer here'
+        front:'',
+        end:'',
+        popup:true
     }
     flipHandler =()=>{
-        let toggle = !this.state.flipped;
+        if(this.state.card.length > 0){
+            let toggle = !this.state.flipped;
         
         this.setState({flipped:toggle});
+        }
+        else return
+        
     }
-    addHandler = (event) =>{
-        let newdata = {'front':this.state.front, 'back': this.state.back}  
-        this.state.card.push(newdata)
-        console.log(this.state.card)
+    addHandler = () => {
+        // if (this.state.front !== '' && this.state.end !== ''){
+            let newdata = {'front':this.state.front, 'back': this.state.back}  
+            this.state.card.push(newdata)
+            console.log(this.state.card)
+            console.log('pass')
+            let toggle = !this.state.popup
+        // }
+        
+            this.setState({popup:toggle})
     }
     nextHandler = () =>{
         if(this.state.incrementer < this.state.card.length - 1 ){
@@ -97,22 +109,30 @@ class FlashCard extends Component {
                          {this.state.card[this.state.incrementer].front}
                     </section>
             )
+            let addNew = null
+            if(this.state.popup){
+                addNew = (
+                    <div class = 'something'>
+                    <form onSubmit = {this.addHandler}>
+                        <input name='back' style={{width:'200px',height:'100px'}} input={this.state.addQuestion}
+                        onChange={this.addQuestionHandler} 
+                        />
+                        <input name='front' style={{width:'200px',height:'100px'}}input={this.state.addAnswer}
+                        onChange={this.addAnswerHandler} 
+                        />
+                    </form>
+                    </div>
+                )
+            }
+           
         return (
-            <div>
+            <div>   
 
                 <Button Next={this.nextHandler} Prev={this.prevHandler}
                 Add={this.addHandler} Restart={this.restartHandler}/> 
-                  
-                <div class = 'something'>
-                <form onSubmit = {this.addHandler}>
-                    <input name='back' input={this.state.addQuestion}
-                    onChange={this.addQuestionHandler} 
-                    />
-                    <input name='front' input={this.state.addAnswer}
-                    onChange={this.addAnswerHandler} 
-                    />
-                </form>
-                </div>
+                  {addNew}
+                
+               
 
                 <article class="flashcard" onClick={this.flipHandler}>
                     <label for="flashcard-1">
