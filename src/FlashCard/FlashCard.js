@@ -39,11 +39,12 @@ class FlashCard extends Component {
         console.log(this.state.card)
     }
     nextHandler = () =>{
-        if(this.state.incrementer < this.state.card.length - 1){
+        if(this.state.incrementer < this.state.card.length - 1 ){
             let value = this.state.incrementer + 1
             this.setState({incrementer: value})
-        }else{
-            this.setState({incrementer: 0})
+        }else if(this.state.card.isEmpty){
+            // this.setState({incrementer: 0})
+            return
         }
         if(this.state.flipped == true){
             this.setState({flipped:false})
@@ -51,19 +52,29 @@ class FlashCard extends Component {
         
        
     }
+    restartHandler = () =>{
+        // let arr = [{front:'',back:''}]
+        // this.setState({card:arr})
+        for(let i = 0; i< this.state.card.length +1; i++)
+            this.state.card.pop()
+
+            console.log(this.state.card)
+    }
+
     addQuestionHandler = (event) =>{
         this.setState({front:event.target.value})
     }
     addAnswerHandler =(event) =>{
         this.setState({back:event.target.value})
     }
-    prevHandler = () =>{
-        if(this.state.incrementer !== 0){
+    prevHandler = () => {
+        if(this.state.incrementer !== 0 ){
             let value = this.state.incrementer - 1
             this.setState({incrementer: value})
         }
         else{
-            this.setState({incrementer: this.state.card.length-1})
+            return;
+            // this.setState({incrementer: this.state.card.length-1})
         }
         if(this.state.flipped == true){
             this.setState({flipped:false})
@@ -89,7 +100,7 @@ class FlashCard extends Component {
             <div>
 
                 <Button Next={this.nextHandler} Prev={this.prevHandler}
-                Add={this.addHandler}/>
+                Add={this.addHandler} Restart={this.restartHandler}/>
                 <form onSubmit = {this.addHandler}>
                     <input name='back' input={this.state.addQuestion}
                     onChange={this.addQuestionHandler} 
