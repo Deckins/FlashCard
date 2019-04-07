@@ -8,11 +8,8 @@ import './Test.css';
 
 class Button extends Component {
     render() {
-        
         return(
         <div>
-
-
             <div>
                 <button class="Prev" onClick={this.Prev}>Prev</button>
             </div>
@@ -22,11 +19,11 @@ class Button extends Component {
             </div>
 
             <div>
-                <button class="Add" onClick={this.Add}>Add</button>
+                <button class="Test" onClick={this.Test}>Test</button>
             </div>
 
-            <div>
-                <button class="Test" onClick={this.Test}>Test</button>
+             <div>
+                <button class="Add" onClick={this.Add}>Add</button>
             </div>
 
             <div>

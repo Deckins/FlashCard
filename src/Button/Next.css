@@ -7,8 +7,9 @@
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  margin: 2px 2px;
+  margin: auto auto;
   cursor: pointer;
   position: absolute;
-  Margin-left: 100px;
+  left: 25.5%;
+  transform: translateX(-50%);
 }
