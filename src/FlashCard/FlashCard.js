@@ -4,6 +4,7 @@ import FormInput from '../FormInput/FormInput';
 import Button from '../Button/Button';
 // import {withRouter} from 'react-router-dom'
 import './Form.css';
+import axios from '../axios-orders';
 class FlashCard extends Component {
     state = {
         card : [
@@ -20,19 +21,23 @@ class FlashCard extends Component {
                 front:'What does K stand for in the Periodic Table',
                 back:'Potassium'
             }
-            // {
-            //     front:'What color is the sky',
-            //     back:'Blue'
-            // }
         ],
         flipped:false,
         incrementer:0,
         add:false,
         front:'',
         end:'',
-        popup:false
+        popup:true,
+        cardObj:[]
     }
-    flipHandler =()=>{
+    componentDidMount(){
+        axios.get('cards.json').
+            then( res => {
+                this.setState({cardObj: res.data})
+                console.log(this.state.cardObj)
+            })
+    }
+    flipHandler = () => {
         if(this.state.card.length > 0){
             let toggle = !this.state.flipped;
         
@@ -40,6 +45,9 @@ class FlashCard extends Component {
         }
         else return
         
+    }
+    postHandler = () => {
+
     }
     addHandler = () => {
         // if (this.state.front !== '' && this.state.end !== ''){
@@ -57,10 +65,15 @@ class FlashCard extends Component {
             }
             let toggle = !this.state.popup
             this.setState({popup:toggle})
+            axios.post('cards.json', newData).
+                then(res => {
+                    console.log(res.data)
+                })
+                
         // }
         
     }
-    nextHandler = () =>{
+    nextHandler = () => {
         if(this.state.incrementer < this.state.card.length - 1 ){
             let value = this.state.incrementer + 1
             this.setState({incrementer: value})
@@ -84,10 +97,10 @@ class FlashCard extends Component {
         // this.props.history.push('/')
     }
 
-    addQuestionHandler = (event) =>{
+    addQuestionHandler = (event) => {
         this.setState({front:event.target.value})
     }
-    addAnswerHandler =(event) =>{
+    addAnswerHandler =(event) => {
         this.setState({back:event.target.value})
     }
     prevHandler = () => {
